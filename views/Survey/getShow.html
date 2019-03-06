@@ -1,0 +1,20 @@
+{% extends "_global/index.html" %} {% block main %}
+    <nav class="options mb-3 bg-light">
+            <a href="#" class="mr-3 btn btn-light" onclick="addBookmark({{ survey.survey_id }});">Dodaj obeleživač</a>
+    </nav>
+    {% include 'Templates/showMessage.html' %}
+    {% if (msgLvl is not defined) or (msgLvl<0) or (msgLvl>=3) %}
+        <div class="m-1 row">
+            <form method="POST" class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+                <div class="card">
+                    {% include 'Templates/showSurvey.html' %}
+                    <div class="card-footer text-center">
+                        <button class="mr-1 btn btn-primary" type="submit">
+                            Odgovori
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}

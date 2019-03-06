@@ -1,0 +1,41 @@
+{% extends "_global/index.html" %} {% block main %}
+<script src="{{ BASE }}assets/js/download.js"></script>
+<div>
+    <nav class="options mb-3 bg-light">
+        <a class="mr-3 btn btn-light" href="{{ BASE }}user/surveys">Moje Ankete</a>
+    </nav>
+    {% include 'Templates/showMessage.html' %}
+    {% if (msgLvl is not defined) or (msgLvl!=1) %}
+    <div class="container">
+            <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th class="align-middle" scope="col">#</th>
+                            {% for question in questions %}
+                                <th class="align-middle" scope="col">{{question}}</th>
+                            {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for answerrow in answers %}
+                                <tr>
+                                    <th class="align-middle" scope="row">{{ loop.index0+1 }}</th>
+                                    {% for answer in answerrow %}
+                                    <td class="align-middle">{{answer}}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+    </div>
+    
+    <br>
+    <div class="text-center">
+        <a href="#" id="download_link" class="btn btn-success" role="button" data-answers='{{ [questions]|merge(answers)|json_encode|raw }}' data-file-name="{{survey.title~' data.csv'}}" onclick="downloadNow()">
+            Preuzmi Odgovore</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

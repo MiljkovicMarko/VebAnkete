@@ -1,0 +1,47 @@
+{% extends "_global/index.html" %} {% block main %}
+<div>
+    <nav class="options mb-3 bg-light">
+        <a class="mr-3 btn btn-light" href="{{ BASE }}user/surveys/edit">Dodaj novu anketu</a>
+        <a class="mr-3 btn btn-light" href="{{ BASE }}user/logout/">Odjava</a>
+    </nav>
+    {% include 'Templates/showMessage.html' %}
+    {% if (msgLvl is not defined) or (msgLvl!=1) %}
+    <div class="container mt-3">
+        <div class="table-responsive">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th class="align-middle" scope="col">#</th>
+                        <th class="align-middle" scope="col">Pregled Ankete</th>
+                        <th class="align-middle" scope="col">Objavljena</th>
+                        <th class="align-middle" scope="col">Izmeni</th>
+                        <th class="align-middle" scope="col">Link za Ispitanike</th>
+                        <th class="align-middle" scope="col">Pogledaj Odgovore</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for survey in surveys %}
+                    <tr>
+                        <th class="align-middle" scope="row">{{ loop.index0+1 }}</th>
+                        <td class="align-middle"><a href="{{ BASE }}user/surveys/{{ survey.survey_id }}">
+                                {{ survey.title|escape }}
+                            </a></td>
+                        <td class="align-middle">{{survey.is_published? ' objavljena ' : 'neobjavljena'}}</td>
+                        <td class="align-middle"> <a href="{{ BASE }}user/surveys/edit/{{ survey.survey_id }}">
+                                Izmeni
+                            </a></td>
+                        <td class="align-middle"> <a href="{{ BASE }}surveys/{{ survey.survey_link }}">
+                                link
+                            </a></td>
+                        <td class="align-middle"><a href="{{ BASE }}user/surveys/answers/{{ survey.survey_id }}">
+                                Pogledaj odgovore
+                            </a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

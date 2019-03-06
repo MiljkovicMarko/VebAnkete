@@ -1,0 +1,36 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+
+<div class="m-1 row">
+    <form action="{{ BASE }}user/login" method="POST" class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+        <div class="card">
+            <div class="card-header h3 text-center">
+                Prijava korisnika
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="input_username">Korisničko ime:</label>
+                    <input class="form-control" type="text" id="input_username" name="login_username" pattern=".*[^\s]{3,}.*"
+                        required placeholder="Unesite svoje korisničko ime.">
+                </div>
+
+                <div class="form-group">
+                    <label for="input_password">Lozinka:</label>
+                    <input class="form-control" type="password" id="input_password" name="login_password" pattern=".*[^\s]{8,}.*"
+                        required placeholder="Unesite svoju lozinku.">
+                </div>
+
+            </div>
+            <div class="card-footer text-center">
+                <button class="m-1 btn btn-primary" type="submit">
+                    Prijavi se
+                </button>
+                <a class="m-1 btn btn-secondary" href="{{ BASE }}user/register">
+                    Idi na formu za registraciju
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

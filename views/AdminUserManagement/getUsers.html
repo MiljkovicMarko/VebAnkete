@@ -1,0 +1,40 @@
+{% extends "_global/index.html" %} {% block main %}
+<div>
+    <nav class="options mb-3 bg-light">
+        <a class="mr-3 btn btn-light" href="{{ BASE }}admin/surveys/">Ankete</a>
+        <a class="mr-3 btn btn-light" href="{{ BASE }}admin/profile/">Promeni lozinku</a>
+        <a class="mr-3 btn btn-light" href="{{ BASE }}admin/logout/">Odjava</a>
+    </nav>
+    {% include 'Templates/showMessage.html' %}
+    {% if (msgLvl is not defined) or (msgLvl!=1) %}
+        <div class="container mt-3">
+            <div class="table-responsive">
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th class="align-middle" scope="col">#</th>
+                            <th class="align-middle" scope="col">Id Korisnika</th>
+                            <th class="align-middle" scope="col">Ažuriraj</th>
+                            <th class="align-middle" scope="col">Aktivan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <th class="align-middle" scope="row">{{ loop.index0+1 }}</th>
+                            <td class="align-middle">
+                                {{ user.user_id }}
+                            </td>
+                            <td class="align-middle"><a href="{{ BASE }}admin/users/edit/{{ user.user_id }}">
+                                    {{ user.username|escape }}
+                                </a></td>
+                            <td class="align-middle">{{user.is_active? ' aktivan ' : 'neaktivan'}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

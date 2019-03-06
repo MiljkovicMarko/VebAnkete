@@ -1,0 +1,145 @@
+<div class="card-columns row justify-content-center">
+    <form class="question-form col-xl-4" method="POST"
+        onsubmit="return validateQuestionForm()">
+        <div class="card">
+            <div class="card-header h3 text-center text-muted">
+                Dodaj Pitanja
+            </div>
+            <div class="card-body">
+                <label for="question">Tekst pitanja: </label>
+                <textarea class="form-control" id="question" name="question" required></textarea>
+                <div class="alert alert-warning d-none" id="question-error-message">
+                </div>
+                <div class="all_elements">
+                    <span class="mt-2 h5">Dostupne verzije odgovora:</span>
+                    <div>Malo tekstualno polje
+                        <br>
+                        <input class="form-control" type="text" id="short" name="short">
+                        <button class="m-1 btn btn-primary" name=question_type type="submit" value="short">
+                            Dodaj
+                        </button>
+                    </div>
+                    <br>
+                    <div>Veliko tekstualno polje
+                        <br>
+                        <textarea class="form-control" id="long" name="long"></textarea>
+                        <button class="m-1 btn btn-primary" name=question_type type="submit" value="long">
+                            Dodaj
+                        </button>
+                    </div>
+                    <br>
+                    <div>Da/ne pitanje
+                        <br>
+                        <input type="radio" name="yes_no" value="da"> Da
+                        <br>
+                        <input type="radio" name="yes_no" value="ne"> Ne
+                        <br>
+                        <button class="m-1 btn btn-primary" name=question_type type="submit" value="y/n">
+                            Dodaj
+                        </button>
+                    </div>
+                    <br>
+                    <div>Slaganje sa tvrdnjom
+                        <br>
+                        <input type="radio" id="disagree" name="disagree" value="nimalo"> Nimalo
+                        <br>
+                        <input type="radio" id="little" name="little" value="malo"> Malo
+                        <br>
+                        <input type="radio" id="majorly" name="majorly" value="dosta"> Dosta
+                        <br>
+                        <input type="radio" id="fully" name="fully" value="potpuno"> Potpuno
+                        <br>
+                        <button class="m-1 btn btn-primary" name=question_type type="submit" value="qualitative">
+                            Dodaj
+                        </button>
+                    </div>
+                    <br>
+                    <div>Davanje ocene
+                        <input class="form-control" type="number" id="quantitative" name="quantitative" min="1" max="10" />
+                        <button class="m-1 btn btn-primary" name=question_type type="submit" value="quantitative">
+                            Dodaj
+                        </button>
+                    </div>
+                    <br>
+                    <div>Sa ponuđenim odgovorima
+                        <select class="form-control">
+                            <option value="Prvi">Prvi</option>
+                            <option value="Drugi">Drugi</option>
+                            <option value="Treći">Treći</option>
+                        </select>
+                        <br> Ponudjeni odgovori (svaki u novom redu):
+                        <br>
+                        <textarea class="form-control" id="choices" name="choices"></textarea>
+                        <button class="m-1 btn btn-primary" name=question_type type="submit" value="choice" onclick="btnChoiceClick()">
+                            Dodaj
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-header h3 text-center text-muted">
+                Izgled Ankete
+            </div>
+            {% include 'Templates/showSurvey.html' %}
+            <div class="card-footer text-center">
+                <button class="mr-1 btn btn-primary">
+                    Odgovori
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <form method="POST" class="survey-form col-xl-4"
+        onsubmit="return validateSurveyForm()">
+        <div class="card">
+            <div class="card-header h3 text-center text-muted">
+                Podešavanja ankete
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="form form-row">
+                        <div class="form col-4 text-center">
+                            <div class="m-auto form"><label class="" for="title">Naslov: </label>
+                                <input class="form-control" type="text" id="title" name="title" value="{{ survey.title|default('Radni Naslov')|escape }}"
+                                    required></div>
+                        </div>
+                        <div class="form col-4 text-center">
+                            <div class="m-auto form">
+                                <label for="description">Opis: </label>
+                                <textarea class="form-control align-top" id="description" name="description" maxlength="500"
+                                    required>{{ survey.description|default('Nema opisa...')|escape }}</textarea>
+                            </div>
+                        </div>
+                        <div class="form col-4 text-center">
+                            <label>Opcije: </label>
+                            <div class="form-row text-left">
+                                <div class="col-auto offset-5 form-check">
+                                    <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="0"><label class="form-check-label" for="is_active">Izbriši
+                                    </label>
+                                    </div>
+                                <div class="col-auto offset-5 form-check">
+                                    <input class="form-check-input " type="checkbox" id="is_published" name="is_published" {% if
+                                        survey.is_published==1 %}checked{% endif %} value="1"><label class="form-check-label" for="is_published">Objavi
+                                    </label>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <button class="mr-1 btn btn-primary" type="submit">
+                    Izmeni
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="alert alert-warning d-none" id="survey-error-message">
+            </div>
+        </div>
+    </form>
+</div>

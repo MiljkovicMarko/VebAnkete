@@ -1,0 +1,59 @@
+<div class="card-columns row">
+    <form method="POST" class="survey-form col-xl-6" onsubmit="return validateSurveyForm()">
+        <div class="card">
+            <div class="card-header h3 text-center text-muted">
+                Podešavanja ankete
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="form form-row">
+                        <div class="form col-4 text-center">
+                            <div class="m-auto form"><label class="" for="title">Naslov: </label>
+                                <input class="form-control" type="text" id="title" name="title" value="{{ survey.title|escape }}"
+                                    required></div>
+                        </div>
+                        <div class="form col-4 text-center">
+                            <div class="m-auto form">
+                                <label for="description">Opis: </label>
+                                <textarea class="form-control align-top" id="description" name="description" maxlength="500"
+                                    required>{{ survey.description|escape }}</textarea>
+                            </div>
+                        </div>
+                        <div class="form col-4 text-center">
+                            <label>Opcije: </label>
+                            <div class="form-row text-left">
+                                <div class="col-auto offset-5 form-check">
+                                    <input class="form-check-input" type="checkbox" id="is_active" name="is_active"
+                                        value="0"><label class="form-check-label" for="is_active">Izbriši
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <button class="mr-1 btn btn-primary" type="submit">
+                    Izmeni
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="alert alert-warning d-none" id="survey-error-message">
+            </div>
+        </div>
+    </form>
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header h3 text-center text-muted">
+                Izgled Ankete
+            </div>
+            {% include 'Templates/showSurvey.html' %}
+            <div class="card-footer text-center">
+                <button class="mr-1 btn btn-primary">
+                    Odgovori
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+{% extends "_global/index.html" %} {% block main %}
+<div>
+    <nav class="options mb-3 bg-light">
+        <a class="mr-3 btn btn-light" href="{{ BASE }}admin/users/">Korisnici</a>
+        <a class="mr-3 btn btn-light" href="{{ BASE }}admin/profile/">Promeni lozinku</a>
+        <a class="mr-3 btn btn-light" href="{{ BASE }}admin/logout/">Odjava</a>
+    </div>
+    {% include 'Templates/showMessage.html' %}
+    {% if (msgLvl is not defined) or (msgLvl!=1) %}
+        <div class="container mt-3">
+            <div class="table-responsive">
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th class="align-middle" scope="col">#</th>
+                            <th class="align-middle" scope="col">Id Ankete</th>
+                            <th class="align-middle" scope="col">Ažuriraj Anketu</th>
+                            <th class="align-middle" scope="col">Id Korisnika</th>
+                            <th class="align-middle" scope="col">Aktivna</th>
+                            <th class="align-middle" scope="col">Objavljena</th>
+                            <th class="align-middle" scope="col">Link Ankete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for survey in surveys %}
+                        <tr>
+                            <th class="align-middle" scope="row">{{ loop.index0+1 }}</th>
+                            <td class="align-middle">
+                                {{ survey.survey_id }}
+                            </td>
+                            <td class="align-middle"><a href="{{ BASE }}admin/surveys/edit/{{ survey.survey_id }}">
+                                    {{ survey.title|escape }}
+                                </a></td>
+                            <td class="align-middle"><a href="{{ BASE }}admin/users/edit/{{ survey.user_id }}">
+                                    {{ survey.user_id }}
+                                </a></td>
+                            <td class="align-middle">{{survey.is_active? ' aktivna ' : 'neaktivna'}}</td>
+                            <td class="align-middle">{{survey.is_published? ' objavljena ' : 'neobjavljena'}}</td>
+                            <td class="align-middle"> <a href="{{ BASE }}surveys/{{ survey.survey_link|escape }}">
+                                    {{ survey.survey_link|escape }}
+                                </a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

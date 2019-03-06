@@ -1,0 +1,69 @@
+{% extends "_global/index.html" %} {% block main %}
+
+    <nav class="options mb-3 bg-light">
+        <a class="mr-3 btn btn-light" href="{{ BASE }}admin/users/">Korisnici</a>
+        <a class="mr-3 btn btn-light" href="{{ BASE }}admin/surveys/">Ankete</a>
+        <a class="mr-3 btn btn-light" href="{{ BASE }}admin/profile/">Promeni lozinku</a>
+        <a class="mr-3 btn btn-light" href="{{ BASE }}admin/logout/">Odjava</a>
+    </nav>
+    {% include 'Templates/showMessage.html' %}
+    {% if (msgLvl is not defined) or (msgLvl!=1) %}
+        <div class="m-1 row">
+            <form method="POST" class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+                <div class="card">
+                    <div class="card-header h3 text-center">
+                        Izmena korisničkog naloga
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="input_email">E-mail:</label>
+                            <input class="form-control" type="email" id="input_email" name="email" placeholder="Barem 3 karaktera."
+                                pattern=".*[^\s]{3,}.*" required value="{{user.email|escape}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input_forename">Ime:</label>
+                            <input class="form-control" type="text" id="input_forename" name="forename" placeholder="Barem 3 karaktera."
+                                pattern=".*[^\s]{3,}.*" required value="{{user.forename|escape}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="input_surname">Prezime:</label>
+                            <input class="form-control" type="text" id="input_surname" name="surname" placeholder="Barem 3 karaktera."
+                                pattern=".*[^\s]{3,}.*" required value="{{user.surname|escape}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input_username">Korisničko ime:</label>
+                            <input class="form-control" type="text" id="input_username" name="username" placeholder="Barem 3 karaktera."
+                                pattern=".*[^\s]{3,}.*" required value="{{user.username|escape}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input_password_1">Lozinka:</label>
+                            <input class="form-control" type="password" id="input_password_1" placeholder="Barem 8 karaktera."
+                                name="password_1" pattern=".*[^\s]{8,}.*">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input_password_2">Ponovite lozinku:</label>
+                            <input class="form-control" type="password" id="input_password_2" placeholder="Barem 8 karaktera."
+                                name="password_2" pattern=".*[^\s]{8,}.*">
+                        </div>
+
+                        <div class="form-check form-check-inline w-100 justify-content-center">
+                            <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1" {% if
+                                user.is_active==1 %}checked{% endif %}>
+                            <label class="form-check-label" for="is_active">Aktivan</label>
+                        </div>
+
+                    </div>
+                    <div class="card-footer text-center">
+                        <button class="btn btn-primary" type="submit">
+                            Izmeni
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,71 @@
+<div class="card-header h3 text-center">
+    {{survey.title|default('Radni Naslov')|escape }}
+</div>
+<div class="card-header mb-1 pb-1">
+    <p class="font-italic font-weight-light mb-1 pb-1"><span class='font-weight-normal'>Opis ankete: </span>{{survey.description|default('Nema
+        opisa...')|escape }}</p>
+</div>
+<div class="card-body">
+    {% if questionsInSurvey is not defined %}
+        <div class="h5">Za sada nema pitanja...</div>
+    {% endif %}
+    <ul class="pl-3">
+        {% for question in questionsInSurvey %}
+        <li class="form-group">
+            <label class="d-block" for="{{loop.index}}">{{ question.question_text|escape }}</label>
+            {% if question.answer_type == "short" %}
+            <input type="text" class="form-control" id="{{loop.index}}" name="{{question.question_id|escape}},{{question.nmbr_in_survey|escape}}"
+                pattern=".*[^\s]{1,}.*" required>
+            {% endif %}
+            {% if question.answer_type == "long" %}
+            <textarea class="form-control" id="{{loop.index}}" name="{{question.question_id|escape}},{{question.nmbr_in_survey|escape}}"
+                required></textarea>
+            {% endif %}
+            {% if question.answer_type == "y/n" %}
+            <div class="form-check" id="{{loop.index}}">
+                <input class="form-check-input" type="radio" name="{{question.question_id|escape}},{{question.nmbr_in_survey|escape}}"
+                    value="da" required>
+                <label class="form-check-label">
+                    Da
+                </label>
+                <br>
+                <input class="form-check-input" type="radio" name="{{question.question_id|escape}},{{question.nmbr_in_survey|escape}}"
+                    value="ne">
+                <label class="form-check-label">
+                    Ne
+                </label>
+            </div>
+            {% endif %}
+            {% if question.answer_type == "qualitative" %}
+            <div class="form-check" id="{{loop.index}}">
+                <input class="form-check-input" type="radio" id="disagree" name="{{question.question_id|escape}},{{question.nmbr_in_survey|escape}}"
+                    value="nimalo" required>
+                    <label class="form-check-label">Nimalo</label> 
+                <br>
+                <input class="form-check-input" type="radio" id="little" name="{{question.question_id|escape}},{{question.nmbr_in_survey|escape}}"
+                    value="malo">
+                    <label class="form-check-label">Malo</label> 
+                <br>
+                <input class="form-check-input" type="radio" id="majorly" name="{{question.question_id|escape}},{{question.nmbr_in_survey|escape}}"
+                    value="dosta"> <label class="form-check-label">Dosta</label> 
+                <br>
+                <input class="form-check-input" type="radio" id="fully" name="{{question.question_id|escape}},{{question.nmbr_in_survey|escape}}"
+                    value="potpuno"> <label class="form-check-label">Potpuno</label> 
+                <br>
+            </div>
+            {% endif %}
+            {% if question.answer_type == "quantitative" %}
+            <input class="form-control" type="number" id="{{loop.index}}" name="{{question.question_id|escape}},{{question.nmbr_in_survey|escape}}"
+                min="1" max="10" required />
+            {% endif %}
+            {% if question.answer_type == "choice" %}
+            <select class="form-control" id="{{loop.index}}" name="{{question.question_id|escape}},{{question.nmbr_in_survey|escape}}">
+                {% set choices = question.answer_choices|split('\r\n') %} {% for c in choices %}
+                <option value="{{c|escape}}">{{c|escape}}</option>
+                {% endfor %}
+            </select>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>

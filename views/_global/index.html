@@ -1,0 +1,113 @@
+{% spaceless %}
+<!doctype html>
+<html lang="sr">
+
+<head>
+    <title>vebAnkete!</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ BASE }}favicon.ico" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{{ BASE }}assets/libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ BASE }}assets/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ BASE }}assets/css/main.css">
+</head>
+
+<body>
+    <div class="top-part">
+        <header>
+            <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+                <a class="navbar-brand font-italic align-middle" href="{{ BASE }}">vebAnkete!</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <div class="navbar-nav mr-auto">
+                        <a class="nav-item nav-link" href="{{ BASE }}user/surveys">Profil</a>
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Obeležja
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="bookmarks">
+                                    Učitavanje obeležja...
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" onclick="clearBookmarks()">
+                                    Izbriši sva obeležja
+                                </a>
+                            </div>
+                        </div>
+                        <a class="nav-item nav-link" href="{{ BASE }}about">O nama</a>
+                    </div>
+                    <form class="form-inline my-2 my-lg-0" method="post" action="{{ BASE }}search">
+                        <div class="input-group">
+                            <input class="form-control" type="search" name="search" id="search" placeholder="Ključne reči pretrage"
+                                required pattern=".*[^\s]{1,}.*">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </nav>
+        </header>
+        <div class="container-fluid p-1">
+            <div class="row m-0 mt-3">
+                <div class="col col-lg">
+                    <a href="{{ BASE }}" id="start">
+                        <img src="{{ BASE }}assets/img/banner-1.png" alt="Banner 1">
+                    </a>
+                </div>
+                <div class="col col-lg">
+                    <div class="social-icons text-right">
+                        <a href="#">
+                            <i class="fa fa-facebook-square"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-linkedin-square"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-twitter-square"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-youtube-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-0">
+                <main class="mt-3 col col-lg">
+                    {% block main %} {% endblock %}
+                </main>
+            </div>
+        </div>
+    </div>
+    <div class="bot-part">
+        <div class="bot-part-abs">
+                <div class="paginacija-cont">
+                    {% block pagination %} {% endblock %}
+                </div>
+                <footer>
+                    <div class="in-footer text-center">
+                        <p class="text-muted credit">&copy; 2018 - vebAnkete!</p>
+                    </div>
+                </footer>
+        </div>
+    </div>
+    
+    <script>const BASE = '{{ BASE }}';</script>
+    <script src="{{ BASE }}assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="{{ BASE }}assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ BASE }}assets/js/bookmark.js"></script>
+    {% block scripts %} {% endblock %}
+</body>
+
+</html>
+{% endspaceless %}

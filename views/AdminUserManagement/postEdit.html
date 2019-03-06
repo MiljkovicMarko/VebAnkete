@@ -1,0 +1,9 @@
+{% extends "_global/index.html" %} {% block main %}
+<nav class="options mb-3 bg-light">
+        <a class="mr-3 btn btn-light" href="{{ BASE }}admin/users/">Korisnici</a>
+        <a class="mr-3 btn btn-light" href="{{ BASE }}admin/surveys/">Ankete</a>
+        <a class="mr-3 btn btn-light" href="{{ BASE }}admin/profile/">Promeni lozinku</a>
+        <a class="mr-3 btn btn-light" href="{{ BASE }}admin/logout/">Odjava</a>
+</nav>
+{% include 'Templates/showMessage.html' %}
+{% endblock %}

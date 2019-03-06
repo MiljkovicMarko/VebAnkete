@@ -1,0 +1,33 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+
+<div class="m-1 row">
+    <form method="POST" class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+        <div class="card">
+            <div class="card-header h3 text-center">
+                Prijava administratora
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="input_username">Administratorsko ime:</label>
+                    <input class="form-control" type="text" id="input_username" name="admin_name" pattern=".*[^\s]{3,}.*"
+                        required placeholder="Unesite svoje administratorsko ime.">
+                </div>
+
+                <div class="form-group">
+                    <label for="input_password">Lozinka:</label>
+                    <input class="form-control" type="password" id="input_password" name="admin_password" pattern=".*[^\s]{8,}.*"
+                        required placeholder="Unesite svoju lozinku.">
+                </div>
+
+            </div>
+            <div class="card-footer text-center">
+                <button class="mr-1 btn btn-primary" type="submit">
+                    Prijavi se
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

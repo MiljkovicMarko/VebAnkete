@@ -1,0 +1,40 @@
+{% extends "_global/index.html" %}
+{% block main %}
+    {% include 'Templates/showMessage.html' %}
+    {% if (msgLvl is not defined) or (msgLvl!=1) %}
+        <div class="stranica">
+            
+            <div class="surveys row text-center" data-surveys='{{ surveys|json_encode|raw }}' id="surveys">
+                
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+{% if (msgLvl is not defined) or (msgLvl!=1) %}
+    {% block pagination %}
+        <div class="paginacija">
+            <nav class='mb-0'>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled" id="pg-prev">
+                        <a class="page-link" href="#" onclick="return prevClicked()" aria-label="Prethodna">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Prethodna</span>
+                        </a>
+                    </li>
+                    <li class="page-item disabled" id='pg-1'><a class="page-link" id="pg-lnk-1" onclick="return pg1Clicked()" href="#">1</a></li>
+                    <li class="page-item disabled active" id='pg-2'><a class="page-link" id="pg-lnk-2">2</a></li>
+                    <li class="page-item disabled" id='pg-3'><a class="page-link" id="pg-lnk-3" onclick="return pg3Clicked()" href="#">3</a></li>
+                    <li class="page-item disabled" id="pg-next">
+                        <a class="page-link" href="#" onclick="return nextClicked()" aria-label="Sledeća">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Sledeća</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    {% endblock %}
+    {% block scripts %}
+        <script src="{{ BASE }}assets/js/pagination.js"></script>
+    {% endblock %}
+{% endif %}

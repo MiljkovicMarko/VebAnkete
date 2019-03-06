@@ -1,0 +1,41 @@
+{% spaceless %}
+{% if (msgLvl is defined) and (msgLvl>=0) and (msgLvl<3) %} 
+<div class="m-2 text-center mx-auto col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+    <div class="card alert-success {{ msgLvl==0 ? '' : 'd-none' }}" role="alert">
+        <div class="card-header alert-success">
+            <span class="h5 alert-heading">{{msgTitle|escape}}</span>
+        </div>
+        <div class="card-body alert-success">
+            <span class="">{{ msg|escape }}</span>
+        </div>
+        {% if (msgLink is defined and msgLink is not null) and (msgLinkText is defined and msgLinkText is not null) %}
+        <div class="card-footer alert-success">
+            <span class="mb-0">Kliknite <a class="alert-link" href="{{ msgLink|escape }}">ovde</a> {{ msgLinkText|escape
+                }}</span>
+        </div>
+        {% endif %}
+    </div>
+    <div class="card alert-danger {{ msgLvl==1 ? '' : 'd-none' }}" role="alert">
+        <div class="card-header alert-danger">
+            <span class="h5 alert-heading">{{msgTitle|escape}}</span>
+        </div>
+        <div class="card-body alert-danger">
+            <span class="">{{ msg|escape }}</span>
+        </div>
+        <div class="card-footer alert-danger">
+            <span class="mb-0">Kliknite <a class="alert-link" href="javascript: window.history.go(-1)">ovde</a> da se
+                vratite nazad.</span>
+        </div>
+    </div>
+    <div class="alert alert-info {{ msgLvl==2 ? '' : 'd-none' }}" role="alert">
+        <span class="m-0">{{ msg|escape }}</span>
+        {% if (msgLink is defined and msgLink is not null) and (msgLinkText is defined and msgLinkText is not null) %}
+        <div class="m-0">
+            <span class="mb-0">Kliknite <a class="alert-link" href="{{ msgLink|escape }}">ovde</a> {{ msgLinkText|escape
+                }}</span>
+        </div>
+        {% endif %}
+    </div>
+    </div>
+    {% endif %}
+    {% endspaceless %}
