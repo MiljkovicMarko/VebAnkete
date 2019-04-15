@@ -18,7 +18,7 @@
                 'answer_choices'  => new Field((new StringValidator())->setMaxLength(64*1024) ),
                 'answer_required' => new Field(new BitValidator()),
                 'created_at'      => new Field((new DateTimeValidator())->allowDate()->allowTime() , false),
-                'question_text'            => new Field((new StringValidator())->setMaxLength(64*1024) ),
+                'question_text'   => new Field((new StringValidator())->setMaxLength(64*1024) ),
                 'is_active'       => new Field(new BitValidator())
                 
             ];
@@ -31,7 +31,7 @@
         public function getOrderedActiveBySurveyId(int $surveyId, int $isActive=1):array{
             return $this->getOrderedByFieldNames(['survey_id','is_active'], [$surveyId,$isActive],['nmbr_in_survey'],[true]);
         }
-
+        
         //za ADMINA
         public function getAllBySurveyId(int $surveyId): array {
             return $this->getAllByFieldName('survey_id', $surveyId);

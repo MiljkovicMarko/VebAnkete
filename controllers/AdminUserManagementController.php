@@ -117,8 +117,6 @@
 
             $passwordHash = \password_hash($password1, PASSWORD_DEFAULT);
 
-            // try
-            // {
                 $success = $userModel->editById($userId, [
                     'username'      => $username,
                     'password_hash' => $passwordHash,
@@ -127,10 +125,6 @@
                     'surname'       => $surname,
                     'is_active'     => $isActive
                 ]);
-            // }
-            // catch(Exception $e) {
-            //    $this->setMessage(true,'Došlo je do greške!','$e');
-            // }
             
             if (!$success) {
                 $this->setMessage(true,'Došlo je do greške!','Došlo je do greške pri izmeni podataka.');

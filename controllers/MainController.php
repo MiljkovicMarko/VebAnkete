@@ -89,9 +89,6 @@
 
             $passwordHash = \password_hash($password1, PASSWORD_DEFAULT);
 
-
-            // try
-            // {
                 $userId = $userModel->add([
                     'username'      => $username,
                     'password_hash' => $passwordHash,
@@ -99,12 +96,7 @@
                     'forename'      => $forename,
                     'surname'       => $surname
                 ]);
-            // }
-            // catch(Exception $e) {
-            //    $this->setMessage(true,'Došlo je do greške!','$e');
-            // }
             
-
             if (!$userId) {
                 $this->setMessage(true,'Došlo je do greške!','Došlo je do greške pri registraciji, probajte ponovo.');
                 return;

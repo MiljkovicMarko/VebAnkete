@@ -15,6 +15,7 @@ function prevClicked(){
     }
     return false;
 }
+
 function nextClicked(){
     if(currentPage*maxPerPage<lenSurveys)
     {
@@ -24,12 +25,11 @@ function nextClicked(){
     }
     return false;
 }
+
 function pg1Clicked(){
     return prevClicked();
 }
-// function pg2Clicked(){
-//     return false;
-// }
+
 function pg3Clicked(){
     return nextClicked();
 }

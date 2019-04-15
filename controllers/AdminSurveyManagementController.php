@@ -39,8 +39,6 @@
             $question_type = filter_input(INPUT_POST, 'question_type', FILTER_SANITIZE_STRING);
             if(!$question_type)
             {
-                // $surveyModel = new \App\Models\SurveyModel($this->getDatabaseConnection());
-                // $survey = $surveyModel->getById($surveyId);
                 if(!$survey)
                 {
                     $this->setMessage(true,'Došlo je do greške!','Ankete nije pronađenja.');
@@ -83,7 +81,6 @@
                     $this->setMessage(true,'Došlo je do greške!','Greska pri editu!');
                     return;
                 }
-                // $survey = $surveyModel->getById($surveyId);
                 
                 $this->redirect(\Configuration::BASE . 'admin/surveys/edit/' . $surveyId);
                 return;

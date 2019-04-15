@@ -11,11 +11,11 @@
     class AnswerModel extends Model {
         protected function getFields(): array {
             return [
-                'answer_id'      => new Field((new NumberValidator())->setIntegerLength(11), false),
-                'question_id'      => new Field((new NumberValidator())->setIntegerLength(11)),
-                'created_at'      => new Field((new DateTimeValidator())->allowDate()->allowTime() , false),
-                'answer_text'     => new Field((new StringValidator())->setMinLength(1)->setMaxLength(10240) ),
-                'is_active'       => new Field(new BitValidator())
+                'answer_id'     => new Field((new NumberValidator())->setIntegerLength(11), false),
+                'question_id'   => new Field((new NumberValidator())->setIntegerLength(11)),
+                'created_at'    => new Field((new DateTimeValidator())->allowDate()->allowTime() , false),
+                'answer_text'   => new Field((new StringValidator())->setMinLength(1)->setMaxLength(10240) ),
+                'is_active'     => new Field(new BitValidator())
                 
             ];
         }

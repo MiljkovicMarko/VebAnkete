@@ -133,26 +133,7 @@
             return $items;
         }
 
-        // final public function getAllInnerJoinedByFieldName(string $fieldName, string $otherTableName, string $joinOnFieldName, $value): array {
-        //     SELECT * FROM answer
-            
-        //     ON question.question_id = answer.question_id;
-        //     if (!$this->isFieldValueValid($fieldName, $value)) {
-        //         throw new \Exception('Invalid field name or value: ' . $fieldName);
-        //     }
-
-        //     $tableName = $this->getTableName();
-        //     $sql = 'SELECT * FROM ' . $tableName . 'INNER JOIN' . $otherTableName . 'ON question '' question_id = answer.question_id'. ' WHERE ' . $fieldName . ' = ?;';
-        //     $prep = $this->dbc->getConnection()->prepare($sql);
-        //     $res = $prep->execute([$value]);
-        //     $items = [];
-        //     if ($res) {
-        //         $items = $prep->fetchAll(\PDO::FETCH_OBJ);
-        //     }
-        //     return $items;
-        // }
-
-        final public function getAllByFieldNames(array $fieldNames, array $values): array {//dodao//mozda treba uraditi neke provere ili onaj bind parametara?!
+        final public function getAllByFieldNames(array $fieldNames, array $values): array {
             if(count($fieldNames)!=count($values))
             {
                 throw new \Exception('The number of field names doesn\'t match the number of corresponding values!');
@@ -178,7 +159,7 @@
             return $items;
         }
 
-        final public function getOrderedByFieldNames(array $fieldNames, array $values,array $orderBy, array $asc): array {//dodao//mozda treba uraditi neke provere ili onaj bind parametara?!
+        final public function getOrderedByFieldNames(array $fieldNames, array $values,array $orderBy, array $asc): array {
             if(count($fieldNames)!=count($values))
             {
                 throw new \Exception('The number of field names doesn\'t match the number of corresponding values!');

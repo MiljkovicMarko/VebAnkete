@@ -11,14 +11,14 @@
     class SurveyModel extends Model {
         protected function getFields(): array {
             return [
-                'survey_id'      => new Field((new NumberValidator())->setIntegerLength(11), false),
-                'user_id'     => new Field((new NumberValidator())->setIntegerLength(11)),
-                'survey_link'      => new Field((new StringValidator())->setMaxLength(43), false),
-                'created_at'      => new Field((new DateTimeValidator())->allowDate()->allowTime() , false),
-                'title'           => new Field((new StringValidator())->setMaxLength(255) ),
-                'description'     => new Field((new StringValidator())->setMaxLength(500) ),
-                'is_active'       => new Field(new BitValidator()),
-                'is_published'       => new Field(new BitValidator())
+                'survey_id'     => new Field((new NumberValidator())->setIntegerLength(11), false),
+                'user_id'       => new Field((new NumberValidator())->setIntegerLength(11)),
+                'survey_link'   => new Field((new StringValidator())->setMaxLength(43), false),
+                'created_at'    => new Field((new DateTimeValidator())->allowDate()->allowTime() , false),
+                'title'         => new Field((new StringValidator())->setMaxLength(255) ),
+                'description'   => new Field((new StringValidator())->setMaxLength(500) ),
+                'is_active'     => new Field(new BitValidator()),
+                'is_published'  => new Field(new BitValidator())
             ];
         }
 
@@ -29,10 +29,6 @@
         public function getAllActive(int $isActive=1): array {
             return $this->getAllByFieldName('is_active', $isActive);
         }
-
-        // public function getActiveBySurveyLink(string $surveyLink, int $isActive=1) {
-        //     return $this->getByFieldNames(['survey_link', 'is_active'], [$surveyLink, $isActive]);
-        // }
 
         public function getPublishedBySurveyLink(string $surveyLink, int $isActive=1, int $isPublished=1) {
             return $this->getByFieldNames(['survey_link', 'is_active','is_published'], [$surveyLink, $isActive,$isPublished]);
@@ -67,16 +63,4 @@
             return $items;
         }
 
-        // public function getAllPublicByUserId(int $userId, int $isActive=1, int $published=1, int $public=1): array {
-        //     return $this->getAllByFieldNames(['user_id', 'is_active','published','public'], [$userId, $isActive, $published,$public]);
-        // }
-
-        // public function getBySurveyLink(string $surveyLink) {
-        //     return $this->getByFieldName('survey_link', $surveyLink);
-        // }
-
-        //za ADMINA
-        // public function getAllByUserId(int $userId): array {
-        //     return $this->getAllByFieldName('user_id', $userId);
-        // }
     }

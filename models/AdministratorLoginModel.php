@@ -7,11 +7,11 @@
     class AdministratorLoginModel extends Model {
         protected function getFields(): array {
             return [
-                'admministrator_login_id' => new Field((new \App\Validators\NumberValidator())->setIntegerLength(11), false),
-                'login_at'      => new Field((new \App\Validators\DateTimeValidator())->allowDate()->allowTime() , false),
-                'administrator_id'      => new Field((new \App\Validators\NumberValidator())->setIntegerLength(11)),
-                'ip_address'      => new Field((new \App\Validators\StringValidator(7, 255)) ),
-                'user_agent'      => new Field((new \App\Validators\StringValidator(0, 255)) )
+                'admministrator_login_id'   => new Field((new \App\Validators\NumberValidator())->setIntegerLength(11), false),
+                'login_at'                  => new Field((new \App\Validators\DateTimeValidator())->allowDate()->allowTime() , false),
+                'administrator_id'          => new Field((new \App\Validators\NumberValidator())->setIntegerLength(11)),
+                'ip_address'                => new Field((new \App\Validators\StringValidator(7, 255)) ),
+                'user_agent'                => new Field((new \App\Validators\StringValidator(0, 255)) )
             ];
         }
 
